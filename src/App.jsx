@@ -1,38 +1,35 @@
-import "./App.css";
-import axios from "axios";
-import { Component } from "react";
+import './App.css'
+import React, { Component } from 'react';
+import axios from 'axios'
 
 class App extends Component {
-  state = { len: 0 };
+  state = {len : 0}
 
+  // warning
   // constructor(props){
   //   super(props);
-  //   this.getLen(); --> this issue a warning
+  //   this.getPosts();
   // }
 
-  getLen = () => {
-    const url = "https://jsonplaceholder.typicode.com/posts";
-    axios
-      .get(url)
-      .then((res) => {
-        this.setState({ len: res.data.length });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+  getPosts(){
+    const url = 'https://jsonplaceholder.typicode.com/posts'
+    axios.get(url).then(res=>{
+      this.setState({len:res.data.length})
+    }).catch(err=>{
+      console.error(err);
+    })
+  }
 
   componentDidMount(){
-    this.getLen();
+    this.getPosts();
   }
 
   render() {
     return (
-      <div className="App">
-        <p>length : {this.state.len}</p>
-      </div>
+      <p>len is {this.state.len}</p>
     );
   }
 }
 
-export default App;
+
+export default App
